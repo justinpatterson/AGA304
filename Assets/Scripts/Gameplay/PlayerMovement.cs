@@ -20,17 +20,27 @@ public class PlayerMovement : MonoBehaviour
     void HorizontalMovementBehavior()
     {
         Vector2 currentAcceleration = Input.acceleration;
+        float keyboardHorizontal = Input.GetAxis("Horizontal");
+        if (keyboardHorizontal != 0f)
+        {
+            currentAcceleration = new Vector2(keyboardHorizontal, 0f);
+        }
+
+
         Vector3 currentPosition = playerTransform.position;
-        Vector3 displacement = currentAcceleration * Time.deltaTime * 2f;
+        Vector3 displacement = currentAcceleration * Time.deltaTime * speed;
         displacement.z = 0f;
         displacement.y = 0f;
-        Vector3 nextPosition = playerTransform.position + displacement;
+        Vector3 nextPosition = currentPosition + displacement;
+
+        //add some clamping to the "next position" in case it's out of bounds / etcetera etcetera
+
         playerTransform.position = nextPosition;
     }
 
     bool ShouldJump()
     {
-        Debug.Log("Input.Touches = " + Input.touches.Length);
+        //Debug.Log("Input.Touches = " + Input.touches.Length);
         if(Input.touches.Length > 0 )
         {
             if (Input.touches[0].phase == TouchPhase.Began)
@@ -38,8 +48,13 @@ public class PlayerMovement : MonoBehaviour
                 return true;
             }
         }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            return true;
+        }
         return false;
     }
+
 
     IEnumerator DoJump()
     {
