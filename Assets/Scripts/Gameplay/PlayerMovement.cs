@@ -54,10 +54,4 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
-
-
-    IEnumerator DoJump()
-    {
-        yield return null;
-    }
 }
