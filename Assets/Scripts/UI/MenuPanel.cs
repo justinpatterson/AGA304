@@ -11,13 +11,13 @@ public class MenuPanel : MonoBehaviour
         _isOpen = gameObject.activeSelf;
     }
 
-    public void OpenPanel()
+    public virtual void OpenPanel()
     {
         _isOpen = true;
         gameObject.SetActive(_isOpen);
     }
 
-    public void ClosePanel()
+    public virtual void ClosePanel()
     {
         _isOpen = false;
         gameObject.SetActive(_isOpen);
