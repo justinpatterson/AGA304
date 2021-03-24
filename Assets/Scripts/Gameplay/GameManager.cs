@@ -44,15 +44,13 @@ public class GameManager : MonoBehaviour
             case GamePhases.StartPhase:
                 //load data
                 //get microtransactions
-
                 if(SceneManager.GetActiveScene().buildIndex != 0)
                     SceneManager.LoadScene(0);
-
                 OnUnPaused();
                 break;
             case GamePhases.PlayPhase:
                 SceneManager.LoadScene(1);
-
+                AudioManager.instance.PlayMusic(AudioManager.MusicTypes.Gameplay, true);
                 OnUnPaused();
                 break;
         }
