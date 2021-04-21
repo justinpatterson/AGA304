@@ -129,4 +129,12 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
+    public void SetSFXMixerLevel(float value)
+    {
+        audioMixer.SetFloat("SFXVolumeParam", value);
+    }
+    public void SetMusicMixerLevel(float value)
+    {
+        audioMixer.SetFloat("MusicVolumeParam", value);
+    }
 }
